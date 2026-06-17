@@ -1,0 +1,156 @@
+:root {
+    --gaming-cyan: #2da9b9; 
+    --gaming-magenta: #4e95ff; 
+    --gaming-bg: #fdf8f8; 
+    --gaming-card: #ffffff; 
+    --text-white: #212529; 
+    --smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* متغیرهای اصلی دارک مود */
+body.dark-mode {
+    --gaming-bg: #121212;       
+    --gaming-card: #1e1e1e;     
+    --text-white: #e0e0e0;      
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background: var(--gaming-bg); color: var(--text-white); min-height: 100vh; overflow-x: hidden; transition: var(--smooth); }
+
+/* HEADER */
+header { position: fixed; top: 0; left: 0; width: 100%; padding: 20px 6%; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid rgba(0, 0, 0, 0.05); transition: var(--smooth); }
+.logo { font-size: 22px; font-weight: 900; color: #1a1d20; text-transform: uppercase; letter-spacing: 1px; }
+body.dark-mode .logo { color: #ffffff; }
+.logo span { color: var(--gaming-magenta); }
+
+nav a { font-size: 14px; font-weight: 700; color: #666; margin-left: 25px; text-decoration: none; transition: var(--smooth); }
+nav a:hover, nav a.active { color: var(--gaming-cyan); }
+body.dark-mode nav a { color: #aaa; }
+body.dark-mode nav a:hover, body.dark-mode nav a.active { color: var(--gaming-cyan); }
+
+.header-right { display: flex; align-items: center; gap: 18px; }
+.profile-btn, .cart-btn, .theme-btn-header { font-size: 22px; color: #1a1d20; cursor: pointer; transition: var(--smooth); background: none; border: none; outline: none; display: flex; align-items: center; }
+body.dark-mode .profile-btn, body.dark-mode .cart-btn, body.dark-mode .theme-btn-header { color: #ffffff; }
+.profile-btn:hover, .cart-btn:hover, .theme-btn-header:hover { color: var(--gaming-magenta); transform: scale(1.05); }
+
+.cart-btn { position: relative; }
+#cart-count { position: absolute; top: -5px; right: -8px; background: var(--gaming-magenta); color: white; font-size: 10px; font-weight: bold; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+.menu-toggle { display: none; font-size: 26px; color: #1a1d20; cursor: pointer; }
+body.dark-mode .menu-toggle { color: white; }
+
+/* TOAST */
+#toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: #1a1d20; color: white; padding: 12px 25px; border-radius: 8px; font-size: 13px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2); animation: slideIn 0.3s ease forwards; direction: rtl; }
+body.dark-mode .toast { background: var(--gaming-magenta); color: #fff; }
+
+/* CART SIDEBAR */
+.cart-sidebar { position: fixed; top: 0; left: -400px; width: 380px; height: 100%; background: var(--gaming-card); box-shadow: 10px 0 30px rgba(0,0,0,0.05); z-index: 2000; padding: 30px; display: flex; flex-direction: column; transition: var(--smooth); }
+.cart-sidebar.active { left: 0; }
+.cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 15px; }
+.cart-header h3 { font-size: 16px; color: var(--text-white); }
+#close-cart { font-size: 24px; cursor: pointer; color: #888; transition: var(--smooth); }
+#close-cart:hover { color: #ff4e50; }
+.cart-body { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+.cart-footer { border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; margin-top: 15px; }
+.total-price { display: flex; justify-content: space-between; font-weight: bold; font-size: 15px; margin-bottom: 15px; color: var(--text-white); }
+.checkout-btn-link { display: block; text-align: center; width: 100%; padding: 14px; background: var(--gaming-cyan); color: white; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; transition: var(--smooth); }
+.checkout-btn-link:hover { opacity: 0.9; }
+
+/* تغییر رنگ هدر در حالت دارک */
+body.dark-mode header { background: rgba(30, 30, 30, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+
+@keyframes slideIn { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+
+
+/* =========================================================================
+   استایل‌های بهینه‌سازی هدر برای نسخه موبایل (Media Query)
+   ========================================================================= */
+
+/* طراحی اولیه باکس سرچ در دسکتاپ */
+.header-search-box {
+    position: relative;
+    max-width: 250px;
+    width: 100%;
+    margin: 0 20px;
+}
+.header-search-box input {
+    width: 100%;
+    padding: 8px 35px 8px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: rgba(0,0,0,0.02);
+    font-size: 13px;
+    outline: none;
+    color: var(--text-white);
+    transition: var(--smooth);
+}
+body.dark-mode .header-search-box input {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.08);
+}
+.header-search-box .search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 16px;
+}
+.mobile-nav-icon {
+    display: none; /* در دسکتاپ مخفی است */
+}
+
+/* اعمال قوانین تغییرات فقط در موبایل و تبلت (صفحه‌های کوچک‌تر از 768 پیکسل) */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 4%; /* فشرده‌تر شدن پدینگ هدر */
+        flex-wrap: wrap; /* اجازه شکستن خط برای چیدمان بهتر */
+        gap: 10px;
+    }
+
+    /* ۱. مخفی کردن منوی متنی قدیمی */
+    #nav-menu {
+        display: none !important;
+    }
+    .menu-toggle {
+        display: none !important; /* نیازی به دکمه همبرگری متنی هم نداریم */
+    }
+
+    /* ۲. کوچک‌تر کردن لوگو برای باز شدن فضا */
+    .logo {
+        font-size: 18px;
+    }
+
+    /* ۳. فعال کردن آیکن‌های خانه و فروشگاه در هدر موبایل */
+    .mobile-nav-icon {
+        display: flex;
+        align-items: center;
+        font-size: 22px;
+        color: #1a1d20;
+        text-decoration: none;
+        transition: var(--smooth);
+    }
+    body.dark-mode .mobile-nav-icon {
+        color: #ffffff;
+    }
+    .mobile-nav-icon:hover {
+        color: var(--gaming-cyan);
+    }
+
+    /* ۴. مرتب‌سازی تمام آیکن‌ها در یک ردیف منظم و فشرده */
+    .header-right {
+        gap: 14px; /* فاصله یکسان بین تمام شکلک‌ها */
+    }
+    .profile-btn, .cart-btn, .theme-btn-header {
+        font-size: 22px; /* هم‌اندازه شدن تمام شکلک‌ها */
+    }
+
+    /* ۵. بهینه‌سازی باکس سرچ در موبایل */
+    .header-search-box {
+        order: 3; /* انتقال باکس سرچ به ردیف پایین جهت جلوگیری از شلوغی */
+        max-width: 100%;
+        margin: 5px 0 0 0;
+    }
+}
